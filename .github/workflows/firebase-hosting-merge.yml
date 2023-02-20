@@ -10,7 +10,10 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/checkout@v3
+        with:
+          node-version: 18.14
       - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -18,6 +21,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_T_SUNLIGHT_346206 }}'
           channelId: live
           projectId: t-sunlight-346206
-        runs:
-          using: 'node16'
-          main: 'main.js'
+
