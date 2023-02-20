@@ -61,14 +61,226 @@ const HouseContextProvider = ({ children }) => {
     
   }, [])
 
-  const handleClick = ( ) => {
-    console.log('clicked')
-  }
+  const handleClick = () => {
+    setLoading(true)
+    // create a function that checks if the string includes 'any'
+    const isDefault = (str) => {
+      return str.split(' ').includes('any')
+    }
+    
+    // get first value of price and parse it to number
+    const minPrice = parseInt(price.split(' ')[0]);
+
+    // get second value of price and parse it to number
+    const maxPrice = parseInt(price.split(' ')[2]);
+
+    const newHouses = housesData.filter((house) => {
+      const housePrice = parseInt(house.price);
+        
+        //if all values are selected
+        if (
+          house.country === country && 
+          house.year === date && 
+          house.type === property && 
+          housePrice >= minPrice && 
+          housePrice <= maxPrice
+        ) {
+          return house;
+        }
+
+        // if all values are default
+        if (
+          isDefault(country) && 
+          isDefault(date) && 
+          isDefault(property) && 
+          isDefault(price)
+        ) {
+          return house;
+        }
+
+        // if country is not default
+        if (
+          !isDefault(country) && 
+          isDefault(date) && 
+          isDefault(property) && 
+          isDefault(price)
+        ) {
+          return house.country === country;
+        }
+
+        // if date is not default
+        if (
+          isDefault(country) && 
+          !isDefault(date) && 
+          isDefault(property) && 
+          isDefault(price)
+        ) {
+          return house.year === date;
+        }
+
+        // if property is not default
+        if (
+          isDefault(country) && 
+          isDefault(date) && 
+          !isDefault(property) && 
+          isDefault(price)
+        ) {
+          return house.type === property;
+        }
+
+        // if price is not default
+        if (
+          isDefault(country) && 
+          isDefault(date) && 
+          isDefault(property) && 
+          !isDefault(price)
+        ) {
+          if (housePrice >= minPrice && housePrice <= maxPrice) {
+            return house;
+          };
+        }
+
+        // if country and date are not default
+        if (
+          !isDefault(country) && 
+          !isDefault(date) && 
+          isDefault(property) && 
+          isDefault(price)
+        ) {
+          return house.country === country && house.year === date;
+        }
+
+        // if country and property are not default
+        if (
+          !isDefault(country) && 
+          isDefault(date) && 
+          !isDefault(property) && 
+          isDefault(price)
+        ) {
+          return house.country === country && house.type === property;
+        }
+
+        // if country and price are not default
+        if (
+          !isDefault(country) && 
+          isDefault(date) && 
+          isDefault(property) && 
+          !isDefault(price)
+        ) {
+          if (housePrice >= minPrice && housePrice <= maxPrice) {
+            return house.country === country;
+          };
+        }
+
+        // if date and property are not default
+        if (
+          isDefault(country) && 
+          !isDefault(date) && 
+          !isDefault(property) && 
+          isDefault(price)
+        ) {
+          return house.year === date && house.type === property;
+        }
+
+        // if date and price are not default
+        if (
+          isDefault(country) && 
+          !isDefault(date) && 
+          isDefault(property) && 
+          !isDefault(price)
+        ) {
+          if (housePrice >= minPrice && housePrice <= maxPrice) {
+            return house.year === date;
+          };
+        }
+
+        // if property and price are not default
+        if (
+          isDefault(country) && 
+          isDefault(date) && 
+          !isDefault(property) && 
+          !isDefault(price)
+        ) {
+          if (housePrice >= minPrice && housePrice <= maxPrice) {
+            return house.type === property;
+          };
+        }
+
+        // if country, date and property are not default
+        if (
+          !isDefault(country) && 
+          !isDefault(date) && 
+          !isDefault(property) && 
+          isDefault(price)
+        ) {
+          return house.country === country && house.year === date && house.type === property;
+        }
+
+        // if country, date and price are not default
+        if (
+          !isDefault(country) && 
+          !isDefault(date) && 
+          isDefault(property) && 
+          !isDefault(price)
+        ) {
+          if (housePrice >= minPrice && housePrice <= maxPrice) {
+            return house.country === country && house.year === date;
+          };
+        }
+
+        // if country, property and price are not default
+        if (
+          !isDefault(country) && 
+          isDefault(date) && 
+          !isDefault(property) && 
+          !isDefault(price)
+        ) {
+          if (housePrice >= minPrice && housePrice <= maxPrice) {
+            return house.country === country && house.type === property;
+          };
+        }
+
+        // if date, property and price are not default
+        if (
+          isDefault(country) && 
+          !isDefault(date) && 
+          !isDefault(property) && 
+          !isDefault(price)
+        ) {
+          if (housePrice >= minPrice && housePrice <= maxPrice) {
+            return house.year === date && house.type === property;
+          };
+        }
+
+        // if country, date, property and price are not default
+        if (
+          !isDefault(country) && 
+          !isDefault(date) && 
+          !isDefault(property) && 
+          !isDefault(price)
+        ) {
+          if (housePrice >= minPrice && housePrice <= maxPrice) {
+            return house.country === country && house.year === date && house.type === property;
+          };
+        }
+
+
+      });
+    
+      setTimeout(() => {
+        return ( newHouses.length < 1 ? setHouses([]) : 
+        setHouses(newHouses),
+        setLoading(false)
+        );
+      }, 1000);
+  };
+  
 
 
   return (
     <HouseContext.Provider value={{
       houses,
+      setHouses,
       country,
       setCountry,
       countries,
@@ -78,7 +290,9 @@ const HouseContextProvider = ({ children }) => {
       dates,
       setDates,
       price,
+      setPrice,
       loading,
+      setLoading,
       property,
       setProperty,
       properties,

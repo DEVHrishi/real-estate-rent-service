@@ -16,22 +16,13 @@ const PriceRangeDropdown = () => {
 
   const prices = [
     {
-      values: '100000 - 130000',
+      value: '100000 - 130000',
     },
     {
-      values: '130000 - 160000',
+      value: '130000 - 160000',
     },
     {
-      values: '160000 - 190000',
-    },
-    {
-      values: '190000 - 220000',
-    },
-    {
-      values: '10000 - 30000',
-    },
-    {
-      values: '30000 - 40000',
+      value: '160000 - 190000',
     }
     
   ]
@@ -52,12 +43,12 @@ const PriceRangeDropdown = () => {
         {prices.map((price, index) => {
           return (
             <Menu.Item
-              onClick={() => setPrice(price.values)}
+              onClick={() => setPrice(price.value)}
               className='cursor-pointer hover:text-violet-700 transition'
               as='li' 
               key={index}
               >
-                {price.values}
+                {price.value}
               </Menu.Item>
           )
         })}
