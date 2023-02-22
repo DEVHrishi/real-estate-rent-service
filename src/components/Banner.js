@@ -12,8 +12,12 @@ const Banner = () => {
         <div className='mb-5 lg:mb-0 '>
           <h1 className='text-4xl lg:text-[30px] font-semibold leading-none'>Search properties to rent</h1>
         </div>
-        <div className='flex justify-between items-center gap-4 text-sm py-2 px-3 bg-white rounded-lg'>
-          <div>Search with search bar</div>
+        <div className='flex justify-between items-center gap-4 text-sm py-2 px-3 bg-white rounded-lg border border-gray-300 focus:border-violet-700'>
+          <input 
+            className=' outline-none rounded text-sm'
+            type='text' 
+            placeholder='Search'
+          />
           {
             isOpen ? <RiArrowUpSLine className='dropdown-icon-secondary' /> : <RiArrowDownSLine className='dropdown-icon-secondary' />
           }

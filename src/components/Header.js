@@ -19,7 +19,7 @@ const Header = () => {
         </div>
 
         <div className='flex items-center gap-6'>
-          <Link className='text-violet-900 border-2 hover:bg-violet-500 hover:border-violet-500 px-4 py-3 rounded-lg transition' to='/'>Log in</Link>
+          <Link className='text-violet-900 border-2 hover:bg-violet-500 hover:border-violet-500 hover:text-white px-4 py-3 rounded-lg transition' to='/'>Log in</Link>
 
           <Link className='bg-violet-700 hover:bg-violet-800 text-white px-4 py-3 rounded-lg transition' to='/'>Sign up</Link>
         </div>
